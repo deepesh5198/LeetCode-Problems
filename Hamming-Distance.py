@@ -12,7 +12,7 @@
 # 4   (0 1 0 0)
 #        ↑   ↑
 
-def decToBinary(num):
+def decToBinary(num1,num2):
     """
         a utility function to convert
         decimal number to a 4 bit binary
@@ -20,11 +20,23 @@ def decToBinary(num):
         :param num: int
         
     """
-    binary = [d for d in bin(num)]
-    while len(binary) != 5:
-        binary.insert(binary.index('b'), '0')
-    binary.remove('b')
-    return binary
+    bin1 = [d for d in bin(num1).replace('b','')]
+    bin2 = [d for d in bin(num2).replace('b','')]
+    print(bin1, bin2)
+    
+    if max(num1, num2) == num1:
+        while len(bin2) != len(bin1):
+            bin2.insert(0,'0')
+        return bin1, bin2    
+        
+    elif max(num1 , num2) == num2:
+        while len(bin1) != len(bin2):
+            bin1.insert(0,'0')
+        return bin1, bin2
+        
+    else:
+        return bin1, bin2
+        
 
 def hammingDistance(x,y):
     """
@@ -34,8 +46,16 @@ def hammingDistance(x,y):
         :type y: int
         :rtype: int
     """
-    x = decToBinary(x)
-    y = decToBinary(y)
+    x,y = decToBinary(x,y)
+    
+    if max(x,y) == x:
+        while len(y) != len(x):
+            y.insert(0,'0')
+            
+    else:
+        while len(x) != len(y):
+            x.insert(0,'0')
+    print(x, y)
     
     hamming_distance = 0
     for i,j in zip(x,y):
@@ -44,7 +64,7 @@ def hammingDistance(x,y):
             
     return hamming_distance
 
-print(hammingDistance(1,4))
+print(hammingDistance(3,5))
        
      
     
