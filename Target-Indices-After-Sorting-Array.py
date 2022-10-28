@@ -8,7 +8,7 @@
 
 def targetIndices(nums, target): # The slow version
     # sort the array
-    sorted_nums = sorted(nums)
+    nums = sorted(nums)
     # initialize empty list to store indexes
     result = []
     
@@ -17,8 +17,8 @@ def targetIndices(nums, target): # The slow version
     
     # iterate till i != length of array
     # and i <= target
-    while i != len(sorted_nums) and sorted_nums[i] <= target:
-        if sorted_nums[i] == target:
+    while i != len(nums) and nums[i] <= target:
+        if nums[i] == target:
             result.append(i)
         i+=1
     return result
@@ -34,17 +34,17 @@ def targetIndices2(nums, target): # the fast version
     result = []
     
     # sort the array
-    sorted_nums = sorted(nums)
+    nums.sort()
     
     # count target in sorted array
-    count_of_target = sorted_nums.count(target)
+    count_of_target = nums.count(target)
     
     # if count of target is not 0
     if count_of_target != 0:
         
         # store the first index of target
         # in sorted array
-        first_index = sorted_nums.index(target)
+        first_index = nums.index(target)
      
     # if count of target is 0
     # target doesn't exist in array   
