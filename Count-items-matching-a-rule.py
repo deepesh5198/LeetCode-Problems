@@ -1,7 +1,4 @@
-# items = [["phone","blue","pixel"],
-# ["computer","silver","lenovo"],
-# ["phone","gold","iphone"]], 
-# ruleKey = "color", ruleValue = "silver"
+
 
 def countItems(items, ruleKey, ruleValue):
     ruleKeys = {"type":0, "color":1, "name":2}
@@ -10,6 +7,7 @@ def countItems(items, ruleKey, ruleValue):
         if item[ruleKeys[ruleKey]] == ruleValue:
             count +=1
     return count
+
 print(countItems(items = [["phone","blue","pixel"],
                           ["computer","silver","lenovo"],
                           ["phone","gold","iphone"]], 
