@@ -24,26 +24,28 @@ def combinationSum(candidates, target):
     """
     ans = []
     l = len(candidates)
-    
-    # using backtracking
-    def backtrack(current, current_sum, index):
 
-        # base case 1
-        if current_sum > target:
+    def dfs(i, cur, total):
+        # first base case
+        if total == target:
+            ans.append(cur.copy())
             return
-        
-        # base case 2
-        if current_sum == target:
-            ans.append(current)
+
+        # 2nd base case
+        if total > target or i >= l:
             return
+
+        # recursive case
+        # append the candidate
+        cur.append(candidates[i])
         
-        # recursion case
-        else:
-            for i in range(index, l):
-                backtrack(
-                    current + [candidates[i]],
-                    current_sum + candidates[i],
-                    i
-                )
-    backtrack([],0,0)
+        dfs(i, cur, total + candidates[i])
+        
+        # cleaning up
+        cur.pop()
+        
+        # go to next candidate
+        dfs(i+1, cur, total)
+        
+    dfs(0, [], 0)
     return ans
