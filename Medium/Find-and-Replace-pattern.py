@@ -13,18 +13,55 @@ def findAndReplacePattern(words, pattern):
     :rtype: List[str]
     """
     def match(word):
-        map1 = {}
-        map2 = {}
-    
-        for w, p in zip(word, pattern):
-            if w not in map1:
-                map1[w] = p
-                
-            if p not in map2:
-                map2[p] = w
+        word_map = {}
+        pattern_map = {}
 
-            if (map1[w], map2[p]) != (p, w):
+        for w, p in zip(word, pattern):
+            
+            if w not in word_map:
+                word_map[w] = p
+
+            if p not in pattern_map:
+                pattern_map[p] = w
+
+            if (word_map[w], pattern_map[p]) != (p, w):
                 return False
 
         return True
-    return filter(match, words)
+
+
+    return list(filter(match, words))
+
+print(findAndReplacePattern(words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # def match(word):
+    #     map1 = {}
+    #     map2 = {}
+    
+    #     for w, p in zip(word, pattern):
+    #         if w not in map1:
+    #             map1[w] = p
+                
+    #         if p not in map2:
+    #             map2[p] = w
+
+    #         if (map1[w], map2[p]) != (p, w):
+    #             return False
+
+    #     return True
+    # return filter(match, words)
